@@ -1,10 +1,20 @@
 <template>
-  <section class="bg-green-50 py-20 px-6">
+  <section class="bg-green-50 py-20 px-6 overflow-hidden">
     <div class="mx-auto max-w-6xl">
-      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 text-center">
+      <h2
+        class="text-3xl md:text-4xl font-extrabold text-gray-900 text-center"
+        data-aos="fade-down"
+        data-aos-duration="1200"
+        data-aos-once="true"
+      >
         Memories from Our Past Carol Events
       </h2>
-      <p class="text-center text-gray-600 mt-3 mb-12">
+      <p
+        class="text-center text-gray-600 mt-3 mb-12"
+        data-aos="fade-up"
+        data-aos-duration="1200"
+        data-aos-once="true"
+      >
         A glimpse of joy, worship, and celebration
       </p>
 
@@ -14,6 +24,10 @@
           :key="index"
           class="overflow-hidden rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300 cursor-pointer"
           @click="openLightbox(index)"
+          data-aos="fade-up"
+          :data-aos-delay="index * 150"
+          data-aos-duration="1000"
+          data-aos-once="true"
         >
           <img :src="image" alt="Gallery image" class="w-full h-64 object-cover" />
         </div>
@@ -50,6 +64,7 @@
     </div>
   </section>
 </template>
+
 
 <script setup>
 import { ref } from "vue";

@@ -1,11 +1,22 @@
 <template>
   <section class="bg-red-50 py-20 px-6 relative overflow-hidden">
     <Snowfall />
-    <div class="mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-12">
+
+    <div
+      class="mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-12"
+      data-aos="fade-up"
+      data-aos-duration="1200"
+      data-aos-once="true"
+    >
       <!-- Video Section -->
-      <div class="flex-1">
+      <div
+        class="flex-1"
+        data-aos="zoom-in"
+        data-aos-duration="1200"
+        data-aos-once="true"
+      >
         <video
-          src="/Videos/Fatherchristmas.mp4"
+          src="/Videos/FatherXmas.mp4"
           autoplay
           loop
           muted
@@ -15,7 +26,12 @@
       </div>
 
       <!-- Greeting Text Section -->
-      <div class="flex-1 text-center md:text-left relative">
+      <div
+        class="flex-1 text-center md:text-left relative"
+        data-aos="fade-left"
+        data-aos-duration="1200"
+        data-aos-once="true"
+      >
         <h2 class="text-3xl md:text-4xl font-extrabold text-green-700">
           Thank You for Celebrating with Us!
         </h2>
@@ -26,13 +42,23 @@
         </p>
 
         <!-- Happy Christmas Button -->
-        <button  class="mt-6 px-6 py-3 bg-green-600 text-white font-semibold rounded-full hover:bg-green-700 transition-colors"
+        <button
+          class="mt-6 px-6 py-3 bg-green-600 text-white font-semibold rounded-full hover:bg-green-700 transition-colors"
+          data-aos="fade-up"
+          data-aos-delay="200"
+          data-aos-duration="1200"
+          data-aos-once="true"
         >
           🎄 Happy Christmas
         </button>
 
         <!-- Emoji Explosion -->
-        <div class="absolute inset-0 pointer-events-none">
+        <div
+          class="absolute inset-0 pointer-events-none"
+          data-aos="fade-in"
+          data-aos-duration="1500"
+          data-aos-once="true"
+        >
           <span
             v-for="(emoji, index) in emojis"
             :key="index"
@@ -46,6 +72,7 @@
     </div>
   </section>
 </template>
+
 
 <script setup>
 import { ref } from "vue";

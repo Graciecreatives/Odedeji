@@ -7,17 +7,13 @@
       <!-- Desktop Navigation -->
       <nav class="hidden md:block">
         <ul class="flex space-x-6 text-white font-medium">
-          <li>
-            <router-link to="/" class="hover:text-green-200 transition duration-300">Home</router-link>
-          </li>
-          <li>
-            <router-link to="/program" class="hover:text-green-200 transition duration-300">Program</router-link>
-          </li>
-          <li>
-            <router-link to="/bible" class="hover:text-green-200 transition duration-300">Bible</router-link>
-          </li>
-          <li>
-            <router-link to="/hymn" class="hover:text-green-200 transition duration-300">Hymn</router-link>
+          <li v-for="link in navLinks" :key="link.name">
+            <router-link
+              :to="link.path"
+              class="hover:text-green-200 transition duration-300"
+            >
+              {{ link.name }}
+            </router-link>
           </li>
         </ul>
       </nav>
@@ -35,23 +31,32 @@
       </div>
     </div>
 
-    <!-- Mobile Navigation -->
-    <nav v-if="isOpen" class="md:hidden bg-green-700">
-      <ul class="flex flex-col space-y-2 text-white font-medium py-2 px-6">
-        <li>
-          <router-link @click="isOpen = false" to="/" class="hover:text-green-200 transition duration-300">Home</router-link>
-        </li>
-        <li>
-          <router-link @click="isOpen = false" to="/program" class="hover:text-green-200 transition duration-300">Program</router-link>
-        </li>
-        <li>
-          <router-link @click="isOpen = false" to="/bible" class="hover:text-green-200 transition duration-300">Bible</router-link>
-        </li>
-        <li>
-          <router-link @click="isOpen = false" to="/hymn" class="hover:text-green-200 transition duration-300">Hymn</router-link>
-        </li>
-      </ul>
-    </nav>
+    <!-- Mobile Navigation as Full-Screen Panel -->
+    <transition name="slide-down">
+      <nav
+        v-show="isOpen"
+        class="fixed inset-0 bg-green-700 z-50 flex flex-col justify-center items-center overflow-auto"
+      >
+        <button
+          @click="isOpen = false"
+          class="absolute top-6 right-6 text-white text-3xl font-bold focus:outline-none"
+        >
+          &times;
+        </button>
+
+        <ul class="flex flex-col space-y-6 text-white font-semibold text-2xl text-center">
+          <li v-for="link in navLinks" :key="link.name">
+            <router-link
+              @click="isOpen = false"
+              :to="link.path"
+              class="block py-3 px-6 rounded-lg hover:bg-green-600 transition duration-300"
+            >
+              {{ link.name }}
+            </router-link>
+          </li>
+        </ul>
+      </nav>
+    </transition>
   </header>
 </template>
 
@@ -61,14 +66,36 @@ export default {
   data() {
     return {
       isOpen: false,
+      navLinks: [
+        { name: "Home", path: "/" },
+        { name: "Program", path: "/program" },
+        { name: "Bible", path: "/bible" },
+        { name: "Hymn", path: "/hymn" },
+      ],
     };
   },
 };
 </script>
 
 <style scoped>
-/* Optional: subtle shadow for the logo */
+/* Logo shadow */
 h1 {
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile menu slide-down animation */
+.slide-down-enter-active,
+.slide-down-leave-active {
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+.slide-down-enter-from,
+.slide-down-leave-to {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+.slide-down-enter-to,
+.slide-down-leave-from {
+  transform: translateY(0);
+  opacity: 1;
 }
 </style>
