@@ -59,7 +59,7 @@
 
       <!-- Verse Text -->
       <pre class="text-gray-700 text-lg whitespace-pre-wrap">
-{{ hymn.lyrics[hymn.active]?.text || 'No lyrics available.' }}
+{{ getLyricsText(hymn) }}
       </pre>
 
       <!-- Optional Chorus -->
@@ -98,6 +98,11 @@ const activeIndex = ref(null);
 
 const toggleHymn = (index) => {
   activeIndex.value = activeIndex.value === index ? null : index;
+};
+
+const getLyricsText = hymn => {
+  const lyrics = hymn.lyrics && hymn.lyrics[hymn.active];
+  return (lyrics && lyrics.text) || 'No lyrics available.';
 };
 
 onMounted(async () => {

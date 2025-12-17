@@ -61,7 +61,7 @@
 
       <!-- Verse Text -->
       <pre class="text-gray-700 text-lg whitespace-pre-wrap">
-{{ verse.versions.find(v => v.name === verse.active)?.text || 'No text available for this version.' }}
+{{ getVerseText(verse) }}
       </pre>
     </div>
   </div>
@@ -99,6 +99,11 @@ const activeIndex = ref(null);
 
 const toggleVerse = index => {
   activeIndex.value = activeIndex.value === index ? null : index;
+};
+
+const getVerseText = verse => {
+  const found = verse.versions.find(v => v.name === verse.active);
+  return (found && found.text) || 'No text available for this version.';
 };
 
 onMounted(async () => {
